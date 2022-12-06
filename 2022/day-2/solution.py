@@ -17,11 +17,21 @@ def main(filename):
         )
     )
 
+    # rows are opponent moves, and indexed as rock paper scissors
+    # columns are outcomes: loose, draw, win
+    action_map = [
+        ['C', 'A', 'B'],
+        ['A', 'B', 'C'],
+        ['B', 'C', 'A'],
+    ]
+
     total_score = 0
 
     with open(filename, 'r') as f:
         for line in f:
-            opponent, me = line.strip().split()
+            opponent, outcome = line.strip().split()
+
+            me = action_map[trans[opponent]-1][trans[outcome]-1]
 
             # fight score. we subtract one to get the index in maap
             round_score = maap[trans[opponent]-1][trans[me]-1]
