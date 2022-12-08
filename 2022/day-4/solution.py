@@ -10,11 +10,11 @@ def main(filename):
             if elf1[0] == elf2[0]:
                 res += 1
             elif elf1[0] < elf2[0]:
-                res += int(elf2[1] <= elf1[1])
+                res += int(elf1[1] >= elf2[0])
             else:
-                res += int(elf1[1] <= elf2[1])
+                res += int(elf2[1] >= elf1[0])
 
-    print(f'Total number of contained ranges is {res}')
+    print(f'Total number of overlaping ranges is {res}')
 
 
 if __name__ == '__main__':
