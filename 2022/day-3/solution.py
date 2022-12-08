@@ -8,15 +8,24 @@ def main(filename):
     total_score = 0
 
     with open(filename, 'r') as f:
+        i = 0
+        common_items = set()
         for line in f:
             line = line.strip()
-            half_ix = len(line) // 2
 
-            first, second = line[:half_ix], line[half_ix:]
+            items = set(line)
 
-            items_first, items_second = set(first), set(second)
+            if i == 0:
+                common_items = items
+            else:
+                common_items.intersection_update(items)
 
-            total_score += prio[items_first.intersection(items_second).pop()]
+            if i == 2:
+                common_item = common_items.pop()
+                total_score += prio[common_item]
+                i = 0
+            else:
+                i += 1
 
     print(f'Total score is {total_score}')
 
